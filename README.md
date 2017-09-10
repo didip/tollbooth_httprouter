@@ -13,7 +13,7 @@ import (
     "log"
 
     "github.com/didip/tollbooth"
-    "github.com/didip/tollbooth/thirdparty/tollbooth_httprouter"
+    "github.com/didip/tollbooth_httprouter"
     "github.com/julienschmidt/httprouter"
 )
 
@@ -29,7 +29,7 @@ func main() {
     router := httprouter.New()
 
     // Create a limiter struct.
-    limiter := tollbooth.NewLimiter(1, time.Second)
+    limiter := tollbooth.NewLimiter(1, time.Second, nil)
 
     // Index route without limiting.
     router.GET("/", Index)
