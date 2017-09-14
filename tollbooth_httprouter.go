@@ -11,7 +11,7 @@ import (
 // RateLimit is a rate limiting middleware
 func LimitHandler(handler httprouter.Handle, lmt *limiter.Limiter) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		httpError := tollbooth.LimitByRequest(lmt, r)
+		httpError := tollbooth.LimitByRequest(lmt, w, r)
 		if httpError != nil {
 			w.Header().Add("Content-Type", lmt.GetMessageContentType())
 			w.WriteHeader(httpError.StatusCode)
